@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Collector - Open Source</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4facfe">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Email Collector">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-animation">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <h1>Email Collector</h1>
+                </div>
+                <p class="subtitle">Open Source • Firebase Powered • Modern UI</p>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <div class="auth-buttons" data-auth="unauthenticated">
+                    <button class="auth-btn" onclick="AuthUI.showLoginModal()">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In
+                    </button>
+                    <a href="signup.html" class="auth-btn">
+                        <i class="fas fa-user-plus"></i>
+                        Sign Up
+                    </a>
+                </div>
+                <div class="user-menu" data-auth="authenticated">
+                    <button class="user-btn" onclick="AuthUI.showUserProfile()">
+                        <i class="fas fa-user"></i>
+                        <span data-user-info="name">User</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Form Card -->
+        <div class="form-card">
+            <div class="card-header">
+                <h2>Send Your Message</h2>
+                <p>Fill out the form below and your data will be securely stored in Firebase</p>
+            </div>
+
+            <form id="emailForm" class="email-form">
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        <i class="fas fa-envelope"></i>
+                        Email Address
+                    </label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="Enter your email address"
+                        required
+                    >
+                    <div class="error-message" id="emailError"></div>
+                    <div class="verification-status" id="verificationStatus">
+                        <div class="verification-pending" id="verificationPending">
+                            <i class="fas fa-clock"></i>
+                            <span>Please check your email for verification</span>
+                        </div>
+                        <div class="verification-verified" id="verificationVerified">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Email verified successfully</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Message Field -->
+                <div class="form-group">
+                    <label for="message" class="form-label">
+                        <i class="fas fa-comment-alt"></i>
+                        Your Message
+                    </label>
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        class="form-textarea" 
+                        placeholder="Type your message here..."
+                        rows="5"
+                        required
+                    ></textarea>
+                    <div class="error-message" id="messageError"></div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="btn-text">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </span>
+                    <div class="btn-loader" id="btnLoader">
+                        <div class="spinner"></div>
+                    </div>
+                </button>
+            </form>
+
+            <!-- Success/Error Messages -->
+            <div class="message-container">
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Message sent successfully! Your data has been stored in Firebase.</span>
+                </div>
+                <div class="error-message-global" id="errorMessage">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Something went wrong. Please try again.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="stats-section">
+            <h3>Live Statistics</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="totalEmails">0</div>
+                        <div class="stat-label">Total Emails</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="todayEmails">0</div>
+                        <div class="stat-label">Today</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="uniqueVisitors">0</div>
+                        <div class="stat-label">Visitors</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="conversionRate">0%</div>
+                        <div class="stat-label">Conversion</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+            <h3>Why Choose This Email Collector?</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Secure Storage</h4>
+                    <p>Your data is securely stored in Firebase with enterprise-grade security</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>Open Source</h4>
+                    <p>Completely open source - customize and integrate into your projects</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Responsive Design</h4>
+                    <p>Works perfectly on all devices - desktop, tablet, and mobile</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4>Fast & Modern</h4>
+                    <p>Built with modern web technologies for optimal performance</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard Link -->
+        <div class="admin-section">
+            <a href="admin.html" class="admin-link">
+                <i class="fas fa-cog"></i>
+                Admin Dashboard
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2024 Email Collector. Open Source Project.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-book"></i>
+                        Documentation
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Firebase Configuration -->
+    <script src="firebase-config.js"></script>
+    <!-- Language Support -->
+    <script src="languages.js"></script>
+    <!-- Email Service -->
+    <script src="email-service.js"></script>
+    <!-- Email Templates -->
+    <script src="email-templates.js"></script>
+    <!-- Notifications -->
+    <script src="notifications.js"></script>
+    <!-- Authentication -->
+    <script src="auth.js"></script>
+    <!-- Analytics -->
+    <script src="analytics.js"></script>
+    <!-- Main Application Script -->
+    <script src="app.js"></script>
+</body>
+</html>

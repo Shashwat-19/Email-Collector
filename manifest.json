@@ -1,0 +1,25 @@
+{
+    "name": "Email Collector",
+    "short_name": "EmailCollector",
+    "description": "Modern email collection form with Firebase integration",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#667eea",
+    "theme_color": "#4facfe",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxwYXRoIGQ9Ik05NiA0OEMxMTQuMzI3IDQ4IDEyOCA2MS42NzMgMTI4IDgwVjExMkMxMjggMTMwLjMyNyAxMTQuMzI3IDE0NCA5NiAxNDRDNzcuNjczIDE0NCA2NCAxMzAuMzI3IDY0IDExMlY4MEM2NCA2MS42NzMgNzcuNjczIDQ4IDk2IDQ4WiIgZmlsbD0id2hpdGUiLz4KPHA+dGggZD0iTTk2IDY0QzEwNy4wNDYgNjQgMTE2IDcyLjk1NCAxMTYgODRWMTE2QzExNiAxMjcuMDQ2IDEwNy4wNDYgMTM2IDk2IDEzNkM4NC45NTQgMTM2IDc2IDEyNy4wNDYgNzYgMTE2Vjg0Qzc2IDcyLjk1NCA4NC45NTQgNjQgOTYgNjRaIiBmaWxsPSIjNGZhY2ZlIi8+Cjwvc3ZnPgo=",
+            "sizes": "192x192",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iNjQiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxwYXRoIGQ9Ik0yNTYgMTI4QzMwNS4zOTMgMTI4IDM0NCAxNjYuNjA3IDM0NCAyMTZWMjk2QzM0NCAzNDUuMzkzIDMwNS4zOTMgMzg0IDI1NiAzODRDMjA2LjYwNyAzODQgMTY4IDM0NS4zOTMgMTY4IDI5NlYyMTZDMTY4IDE2Ni42MDcgMjA2LjYwNyAxMjggMjU2IDEyOFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yNTYgMTcwQzI4NS4zOTMgMTcwIDMwOCAxOTIuNjA3IDMwOCAyMjJWMjkwQzMwOCAzMTkuMzkzIDI4NS4zOTMgMzQyIDI1NiAzNDJDMjI2LjYwNyAzNDIgMjA0IDMxOS4zOTMgMjA0IDI5MFYyMjJDMjA0IDE5Mi42MDcgMjI2LjYwNyAxNzAgMjU2IDE3MFoiIGZpbGw9IiM0ZmFjZmUiLz4KPC9zdmc+Cg==",
+            "sizes": "512x512",
+            "type": "image/svg+xml"
+        }
+    ],
+    "categories": ["productivity", "utilities"],
+    "lang": "en",
+    "dir": "ltr"
+}
