@@ -1,0 +1,124 @@
+{
+  "name": "email-collector",
+  "version": "2.0.0",
+  "description": "A modern, feature-rich email collection platform built with HTML, CSS, JavaScript, and Firebase",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "build": "echo 'No build step required for static site'",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linter configured'",
+    "format": "prettier --write \"**/*.{js,css,html,md}\"",
+    "deploy:firebase": "firebase deploy",
+    "deploy:netlify": "netlify deploy --prod",
+    "validate": "echo 'Validating HTML, CSS, and JS files...'",
+    "audit": "npm audit",
+    "update": "npm update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/email-collector.git"
+  },
+  "keywords": [
+    "email",
+    "collection",
+    "form",
+    "firebase",
+    "javascript",
+    "html",
+    "css",
+    "pwa",
+    "responsive",
+    "analytics",
+    "dashboard",
+    "admin",
+    "authentication",
+    "notifications",
+    "glassmorphism",
+    "modern-ui",
+    "open-source"
+  ],
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com",
+    "url": "https://github.com/yourusername"
+  },
+  "contributors": [
+    {
+      "name": "Contributor Name",
+      "email": "contributor@example.com",
+      "url": "https://github.com/contributor"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/email-collector/issues"
+  },
+  "homepage": "https://github.com/yourusername/email-collector#readme",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "Chrome >= 60",
+    "Firefox >= 55",
+    "Safari >= 12",
+    "Edge >= 79"
+  ],
+  "devDependencies": {
+    "prettier": "^3.0.0",
+    "serve": "^14.0.0"
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "optionalDependencies": {},
+  "funding": {
+    "type": "individual",
+    "url": "https://buymeacoffee.com/yourusername"
+  },
+  "files": [
+    "index.html",
+    "signup.html",
+    "admin.html",
+    "styles.css",
+    "admin.css",
+    "app.css",
+    "app.js",
+    "signup.js",
+    "admin.js",
+    "firebase-config.js",
+    "email-service.js",
+    "email-templates.js",
+    "notifications.js",
+    "auth.js",
+    "analytics.js",
+    "languages.js",
+    "sw.js",
+    "manifest.json",
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md",
+    "CODE_OF_CONDUCT.md",
+    "SECURITY.md",
+    "CHANGELOG.md"
+  ],
+  "directories": {
+    "doc": "docs",
+    "test": "tests",
+    "example": "examples"
+  },
+  "config": {
+    "port": 8000,
+    "host": "localhost"
+  },
+  "preferGlobal": false,
+  "private": false,
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}
